@@ -6,3 +6,17 @@
 [![](https://img.shields.io/badge/Python-3.9-blue.svg)](https://docs.python.org/3.9/)
 [![](https://img.shields.io/badge/Python-3.10-blue.svg)](https://docs.python.org/3.10/)
 [![](https://img.shields.io/badge/Python-3.11-blue.svg)](https://docs.python.org/3.11/)
+
+### Docker Image
+
+```bash
+docker pull khulnasoft/gatherproxy
+
+docker run --env DB_CONN=redis://:password@ip:port/0 -p 5010:5010 khulnasoft/gatherproxy:latest
+```
+### docker-compose
+
+Run in the project directory: 
+``` bash
+docker-compose up -d
+```
