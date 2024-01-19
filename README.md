@@ -7,6 +7,8 @@
 [![](https://img.shields.io/badge/Python-3.10-blue.svg)](https://docs.python.org/3.10/)
 [![](https://img.shields.io/badge/Python-3.11-blue.svg)](https://docs.python.org/3.11/)
 
+[![CodeFactor](https://www.codefactor.io/repository/github/khulnasoft-lab/gatherproxy/badge)](https://www.codefactor.io/repository/github/khulnasoft-lab/gatherproxy)
+
 ### Docker Image
 
 ```bash
