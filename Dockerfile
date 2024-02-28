@@ -4,21 +4,24 @@ MAINTAINER khuknasoft <info@khulnasoft.com>
 
 WORKDIR /app
 
-COPY ./requirements.txt .
-
-# apk repository
+# Update Alpine repository mirror
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
-# timezone
-RUN apk add -U tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && apk del tzdata
+# Install timezone data
+RUN apk add -U tzdata && \
+    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    apk del tzdata
 
-# runtime environment
-RUN apk add musl-dev gcc libxml2-dev libxslt-dev && \
+# Install system dependencies and Python packages
+RUN apk add --no-cache musl-dev gcc libxml2-dev libxslt-dev && \
     pip install --no-cache-dir -r requirements.txt && \
-    apk del gcc musl-dev
+    apk del musl-dev gcc
 
+# Copy application code
 COPY . .
 
+# Expose port
 EXPOSE 5010
 
-ENTRYPOINT [ "sh", "start.sh" ]
+# Set entrypoint
+ENTRYPOINT ["sh", "start.sh"]
