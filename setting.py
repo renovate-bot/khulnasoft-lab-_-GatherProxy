@@ -47,4 +47,4 @@ PROXY_REGION = True
 #   was raised during scheduling.
 # Please uncomment the following line and set a timezone for the scheduler.
 # Otherwise it will detect the timezone from the system automatically.
-TIMEZONE = "Asia/Dhaka"  # Example: Set the timezone to "Asia/Dhaka"
+TIMEZONE = "Asia/Shanghai"  # Example: Set the timezone to "Asia/Dhaka"
