@@ -1,21 +1,20 @@
-FROM python:3.12-alpine
+FROM python:3.12.3-alpine
 
-MAINTAINER khuknasoft <info@khulnasoft.com>
+# Set metadata for the image
+LABEL maintainer="info@khulnasoft.com"
 
 WORKDIR /app
 
 COPY ./requirements.txt .
 
-# apk repository
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
-
-# timezone
-RUN apk add -U tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && apk del tzdata
-
-# runtime environment
-RUN apk add musl-dev gcc libxml2-dev libxslt-dev && \
-    pip install --no-cache-dir -r requirements.txt && \
-    apk del gcc musl-dev
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
+    && apk add --no-cache tzdata \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && apk del tzdata \
+    && apk add --no-cache --virtual .build-deps \
+        musl-dev gcc libxml2-dev libxslt-dev \
+    && pip install --no-cache-dir -r requirements.txt \
+    && apk del .build-deps
 
 COPY . .
 
