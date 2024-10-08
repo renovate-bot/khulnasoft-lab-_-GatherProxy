@@ -1,4 +1,4 @@
-FROM python:3.12.3-alpine
+FROM python:3.13.0-alpine
 
 # Set metadata for the image
 LABEL maintainer="info@khulnasoft.com"
